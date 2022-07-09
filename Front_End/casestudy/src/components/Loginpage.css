@@ -1,0 +1,23 @@
+.logimage{
+    position: absolute;
+    height: 16%;
+    width: 8%;
+    right: 12%;
+    top: 25% ;
+    
+}
+
+.what{
+    height: 10%;
+}
+
+/* 
+position:sticky;
+margin-top: -20%;
+margin-bottom: 0%;
+text-align: center;
+font-size: 30px;
+background-color: #e2d0bd;
+padding: 15px;
+width: auto;
+z-index: 1; */
