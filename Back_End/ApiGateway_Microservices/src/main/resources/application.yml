@@ -1,0 +1,105 @@
+#server:
+#  port: 9090
+#  
+#spring:
+#  application:
+#    name: API_GAte
+#
+#  cloud:
+#    gateway:
+#      globalcors:
+#        cors-configurations: 
+#               '[/**]' :
+#                 allowedOrigins: "http://localhost:3000"
+#                 allowedHeaders: "*"
+#                 allowedMethods: "*"
+#      routes:
+#      - id: ADMIN-APPLICATION
+#        uri:
+#          lb://ADMIN-APPLICATION
+#        predicates:
+#        - Path=/admin/**
+#        
+#      - id: DOCTOR-MICROSERVICE
+#        uri:
+#          lb://DOCTOR-MICROSERVICE
+#        predicates:
+#        - Path=/doctor/**
+#        
+#      - id: DRUG-INVENTORY
+#        uri:
+#          lb://DRUG-INVENTORY
+#        predicates:
+#        - Path=/drug/**
+#        
+
+server:
+        port: 9090
+spring:
+        application:
+               name: API-gateway        
+        cloud: 
+          gateway: 
+            globalcors:
+              cors-configurations: 
+               '[/**]' :
+                 allowedOrigins: "http://localhost:3000"
+                 allowedHeaders: "*"
+                 allowedMethods: "*"     
+            routes:
+            - id: ADMIN-APPLICATION
+              uri: http://localhost:8081/
+              predicates:
+              - Path=/admin/**
+              filters:
+              - StripPrefix=1
+              
+            - id: DOCTOR-MICROSERVICE
+              uri: http://localhost:8082/
+              predicates:
+              - Path=/doctor/**
+              filters:
+              - StripPrefix=1
+                           
+            - id: SUPP-MICROSERVICE
+              uri: http://localhost:8083/
+              predicates:
+              - Path=/supplier/**  
+              filters:
+              - StripPrefix=1   
+                                      
+            - id: DRUG-INVENTORY
+              uri: http://localhost:8084/
+              predicates:
+              - Path=/drug/**  
+              filters:
+              - StripPrefix=1
+              
+            - id: ORDER-MICROSERVICE
+              uri: http://localhost:8085/
+              predicates:
+              - Path=/orders/**
+              filters:
+              - StripPrefix=1 
+              
+            - id: Pickup-MICROSERVICE
+              uri: http://localhost:9091/
+              predicates:
+              - Path=/pickup/**
+              filters:
+              - StripPrefix=1 
+
+#      - id: ORDER-MICROSERVICE
+#        uri:
+#          lb://ORDER-MICROSERVICE
+#        predicates:
+#        - Path=/orders/**
+#         
+#      - id: SUPP-MICROSERVICE
+#        uri:
+#          lb://SUPP-MICROSERVICE
+#        predicates:
+#        - Path=/supplier/**
+
+            
+  
